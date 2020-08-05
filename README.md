@@ -12,4 +12,4 @@ Here are displayed and explained the usable fonctions of the library!
 
 Thanks for reading our work !
 
-- by [Matheo Lucak](https://github.com/matheo-lucak) and [Guillaume Bogard](https://github.com/guillaumebgd)
+- by [Mathéo Lucak](https://github.com/matheo-lucak) and [Guillaume Bogard](https://github.com/guillaumebgd)
