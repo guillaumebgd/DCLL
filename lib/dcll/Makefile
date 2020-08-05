@@ -13,7 +13,7 @@ override CPPFLAGS	+=	-I ./../../include/dcll	\
 
 OBJ	=	$(SRC:.c=.o)	\
 
-NAME	=	libmy.a	\
+NAME	=	libdcll.a	\
 
 CP	=	cp	\
 

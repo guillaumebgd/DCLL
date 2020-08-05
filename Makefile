@@ -9,7 +9,7 @@ SRC_LIBMY	=	lib/my	\
 
 TESTS_LIBMY	=	tests/tests_dcll/	\
 
-NAME_LIBMY	=	-lmy	\
+NAME_LIBMY	=	-ldcll	\
 
 CRITERION_FLAGS	=	-lcriterion --coverage	\
 
@@ -18,7 +18,7 @@ override LDFLAGS	+=	-L./lib	\
 override LDLIBS	+=	$(CRITERION_FLAGS)	\
 					$(NAME_LIBMY)	\
 
-override CPPFLAGS	+=	-I ./include/my	\
+override CPPFLAGS	+=	-I ./include/	\
 
 RM	=	rm -rf	\
 
