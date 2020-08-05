@@ -5,63 +5,45 @@
 ## Makefile use for DCLL_C_library compilation
 ##
 
-SRC_LIBMY	=	lib/my	\
+SRC_LIBDCLL	=	lib/dcll	\
 
-TESTS_LIBMY	=	tests/tests_dcll/	\
-
-NAME_LIBMY	=	-ldcll	\
-
-CRITERION_FLAGS	=	-lcriterion --coverage	\
+NAME_LIBDCLL	=	-ldcll	\
 
 override LDFLAGS	+=	-L./lib	\
 
-override LDLIBS	+=	$(CRITERION_FLAGS)	\
-					$(NAME_LIBMY)	\
+override LDLIBS	+=	$(NAME_LIBDCLL)	\
 
 override CPPFLAGS	+=	-I ./include/	\
 
-RM	=	rm -rf	\
-
-MV	=	mv	\
-
-MKDIR	=	mkdir	\
-
-MAKE	=	make	\
-
-CC	=	gcc	\
-
-TESTS_DIR	=	tests/	\
-
-COVERAGE_DIR	=	coverage/	\
-
 UNIT_TESTS_BINARY	=	unit_tests	\
 
+TEST_COVERAGE_DIR	=	tests/coverage	\
+
 all:
-	$(MAKE) -C $(SRC_LIBMY)
+	$(MAKE) -C $(SRC_LIBDCLL)
 
 debug:
-	$(MAKE) debug -C $(SRC_LIBMY)
+	$(MAKE) debug -C $(SRC_LIBDCLL)
 
+tests_run:	LDLIBS += -lcriterion --coverage
+tests_run:	CFLAGS += --coverage
 tests_run:
 	@find -name "*.gcda" -delete
 	@find -name "*.gcno" -delete
-	$(MAKE) -C $(SRC_LIBMY)
-	$(CC) -o $(UNIT_TESTS_BINARY) $(TESTS_LIBMY) $(CPPFLAGS) $(LDFLAGS) $(LDLIBS)
+	$(MAKE) -C $(SRC_LIBDCLL)
+	$(CC) -O3 -o $(UNIT_TESTS_BINARY) tests/test_*.c $(CPPFLAGS) $(LDFLAGS) $(LDLIBS)
 	./$(UNIT_TESTS_BINARY)
-	$(MKDIR) -p $(COVERAGE_DIR)
-	$(MV) *.gcda $(COVERAGE_DIR)
-	$(MV) *.gcno $(COVERAGE_DIR)
-	$(RM) $(UNIT_TESTS_BINARY)
+	$(RM) -rf $(UNIT_TESTS_BINARY)
+	mv *.gc* $(TEST_COVERAGE_DIR)
 
 clean:
 	@find -name "*.gcda" -delete
 	@find -name "*.gcno" -delete
-	$(RM) $(UNIT_TESTS_BINARY)
-	$(MAKE) clean -C $(SRC_LIBMY)
+	$(RM) -rf $(UNIT_TESTS_BINARY)
+	$(MAKE) clean -C $(SRC_LIBDCLL)
 
 fclean: clean
-	$(MAKE) fclean -C $(SRC_LIBMY)
-	$(RM) $(COVERAGE_DIR)
+	$(MAKE) fclean -C $(SRC_LIBDCLL)
 
 re:	fclean all
 

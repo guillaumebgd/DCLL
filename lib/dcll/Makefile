@@ -5,17 +5,21 @@
 ## Makefile use for DCLL_C_library compilation
 ##
 
-SRC	=	\
+SRC	=	__dcll_add_node.c	\
+		__dcll_get_abs_index.c	\
+		__dcll_get_node_by_index.c	\
+		dcll_create.c	\
+		dcll_destroy_list.c	\
 
 override CFLAGS	=	-Wall -Wextra	\
 
-override CPPFLAGS	+=	-I ./../../include/dcll	\
+override CPPFLAGS	+=	-I ./../../include/	\
 
 OBJ	=	$(SRC:.c=.o)	\
 
 NAME	=	libdcll.a	\
 
-CP	=	cp	\
+MV	=	mv	\
 
 AR	=	ar	\
 
@@ -25,7 +29,7 @@ all:	$(NAME)
 
 $(NAME):	$(OBJ)
 	$(AR) rc $(NAME) $(OBJ)
-	$(CP) -u $(NAME) ../
+	$(MV) $(NAME) ../
 
 debug:
 	$(CC) -g -o ../../$@ ../../main.c $(SRC) $(CPPFLAGS) $(LDFLAGS) $(LDLIBS)
