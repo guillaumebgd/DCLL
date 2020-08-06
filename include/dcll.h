@@ -7,10 +7,12 @@
 
 #ifndef DCLL_H_
 
-///////////////////
+////////////////////
 #include <unistd.h>
 #include <stdbool.h>
-///////////////////
+#include <string.h>
+#include <stdlib.h>
+////////////////////
 
 typedef struct dcll_node_s {
     void *data;
@@ -26,9 +28,35 @@ typedef struct dcll_list_s {
 
 /////////////////////////////////////////
 
+///////////////////////////
+// Library private utils //
+///////////////////////////
+
+//Library-reserved generic function to get the absolute value of an index
+//to allow negative index in the library.
+//
+//- Not designed to be used.
+ssize_t __dcll_get_abs_index(const ssize_t list_length, ssize_t index);
+
+//Library-reserved function to duplicate void *data.
+//
+//- Not designed to be used.
+static inline void *__dcll_data_dup(void *data, const size_t size)
+{
+    void *new_data = malloc(size);
+
+    if (!new_data)
+        return (NULL);
+    memcpy(new_data, data, size);
+    return (new_data);
+}
+
+//////////////////////////////
+
 //////////////////////////////
 
 //Allocates memory for a new DCLL.
+//The list inside of the structure will be set to NULL.
 //
 //Returns an allocated pointer to a DCLL on success.
 //Returns NULL on error.
@@ -38,24 +66,16 @@ dcll_list_t *dcll_create(void);
 //Library-reserved generic function to add node.
 //
 //- Not designed to be used.
-bool __dcll_add_node(dcll_list_t *list, ssize_t index);
+bool __dcll_add_node(dcll_list_t *list, void *data, void *(*data_freer)(void *));
 
 //Allocates memory for a new DCLL node and adds it to the list.
 //
 //Returns (true) on success.
 //Returns (false) on error (memory allocation failed).
-static inline bool dcll_add_node(dcll_list_t *list)
+static inline bool dcll_add_node(dcll_list_t *list, void *data, const size_t data_size, void *(*data_freer)(void *))
 {
-    return (__dcll_add_node(list, -1));
+    return (__dcll_add_node(list, __dcll_data_dup(data, data_size), data_freer));
 }
-//////////////////////////////
-
-//Library-reserved generic function to get the absolute value of an index
-//to allow negative index in the library.
-//
-//- Not designed to be used.
-ssize_t __dcll_get_abs_index(const ssize_t list_length, ssize_t index);
-//////////////////////////////
 
 dcll_node_t *dcll_get_node_by_index(const dcll_list_t *list, ssize_t index);
 

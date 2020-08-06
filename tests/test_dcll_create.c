@@ -14,10 +14,7 @@ Test(dcll_create, test_for_memory_allocation_true)
 
     if (!list)
         return;
-    cr_assert_neq(list->head, NULL);
-    cr_assert(list->head->next == list->head);
-    cr_assert(list->head->prev == list->head);
-    cr_assert(list->head->data == NULL);
-    cr_assert(list->length == 1);
+    cr_assert(list->head == NULL);
+    cr_assert(list->length == 0);
     dcll_destroy_list(list);
 }

@@ -5,14 +5,13 @@
 ** Frees memory allocated by a DCLL.
 */
 
-#include <stdlib.h>
 #include "dcll.h"
 
 static void __dcll_destroy_node(dcll_node_t *node)
 {
     if (!node)
         return;
-    if (node->data) {
+    if (node->data && node->data_freer) {
         node->data_freer(node->data);
     }
     free(node);

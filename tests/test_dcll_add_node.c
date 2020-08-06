@@ -8,11 +8,12 @@
 #include <criterion/criterion.h>
 #include "dcll.h"
 
-Test(dcll_add_node, add_a_simple_node)
+Test(dcll_add_node, add_two_nodes)
 {
     dcll_list_t *list = dcll_create();
 
-    cr_expect(dcll_add_node(list));
+    cr_expect(dcll_add_node(list, NULL, 0, NULL));
+    cr_expect(dcll_add_node(list, NULL, 0, NULL));
     cr_assert(list);
     cr_assert(list->head);
     cr_assert(list->head->next == list->head->prev);
