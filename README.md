@@ -7,12 +7,12 @@ If you're unfamiliar with this concept, we advise you to search about it for the
 
 ## Usage of the Library
 
-Everything is described in details [here](https://github.com/guillaumebgd/DCLL_C_Library/wiki/DCLL-Home-Wiki-Page)!
+Everything is described in details [here](https://github.com/guillaumebgd/DCLL_C_Library/wiki/DCLL-Wiki:-Presets)!
 Examples to understand even more the logic behind the library are available there!
 
 ## Table of Contents
 
-As in release v1.0.0, here is the material you can work with this library (for further explanation on them, click [here](https://github.com/guillaumebgd/DCLL_C_Library/wiki/DCLL-Home-Wiki-Page))
+As in release v1.0.0, here is the material you can work with this library (for further explanation on them, click [here](https://github.com/guillaumebgd/DCLL_C_Library/wiki/DCLL-Wiki:-Presets))
 
 ***
 
@@ -64,11 +64,19 @@ bool dcll_set_node(dcll_node_t *node, void *data, const size_t data_size, void *
 
 ---
 
-Puts a <code>dcll_node_t *node</code> to a certain <code>const size_t index</code> position in a <code>dcll_list_t *list</code>.
-Explanations on indexes usages in this library are available in the [wiki](https://github.com/guillaumebgd/DCLL_C_Library/wiki/DCLL-Home-Wiki-Page)!
+Puts a <code>dcll_node_t *node</code> to a certain <code>const ssize_t index</code> position in a <code>dcll_list_t *list</code>.
+Explanations on indexes usages in this library are available in the [wiki](https://github.com/guillaumebgd/DCLL_C_Library/wiki/DCLL-Wiki:-Indexes)!
 
 ```C
 bool dcll_put_node_in_list(dcll_list_t *list, dcll_node_t *node, const ssize_t index);
+```
+
+---
+
+Gets a <code>dcll_note_t *node</code> at the given <code>ssize_t index</code> in the given <code>const dcll_list_t *list</code>.
+Explanations on indexes usages in this library are available in the [wiki](https://github.com/guillaumebgd/DCLL_C_Library/wiki/DCLL-Wiki:-Indexes)!
+```C
+dcll_node_t *dcll_get_node_by_index(const dcll_list_t *list, ssize_t index);
 ```
 
 ---
