@@ -56,7 +56,7 @@ dcll_node_t *dcll_create_node(void);
 
 ---
 
-Duplicates <code>void *data</code> with allocating a new memory field of size <code>const size_t data_size</code> to it. Also sets the <code>void *(*data_freer)(void *)</code> to the adress of a function that frees <code>void *data</code>.
+Duplicates <code>void *data</code> by allocating a new memory field of size <code>const size_t data_size</code> to it. Also sets the <code>void *(*data_freer)(void *)</code> to the address of a function that frees <code>void *data</code>.
 
 ```C
 bool dcll_set_node(dcll_node_t *node, void *data, const size_t data_size, void *(*data_freer)(void *));
