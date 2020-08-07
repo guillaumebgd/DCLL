@@ -12,7 +12,7 @@ Examples to understand even more the logic behind the library are available ther
 
 ## Table of Contents
 
-As in release v1.0.0, here are the material you can work with this library (for further explanation on them, click [here](https://github.com/guillaumebgd/DCLL_C_Library/wiki/DCLL-Home-Wiki-Page))
+As in release v1.0.0, here is the material you can work with this library (for further explanation on them, click [here](https://github.com/guillaumebgd/DCLL_C_Library/wiki/DCLL-Home-Wiki-Page))
 
 ***
 
