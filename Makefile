@@ -34,12 +34,14 @@ tests_run:
 	$(CC) -O3 -o $(UNIT_TESTS_BINARY) tests/test_*.c $(CPPFLAGS) $(LDFLAGS) $(LDLIBS)
 	./$(UNIT_TESTS_BINARY)
 	$(RM) -rf $(UNIT_TESTS_BINARY)
+	mkdir $(TEST_COVERAGE_DIR)
 	mv *.gc* $(TEST_COVERAGE_DIR)
 
 clean:
 	@find -name "*.gcda" -delete
 	@find -name "*.gcno" -delete
 	$(RM) -rf $(UNIT_TESTS_BINARY)
+	$(RM) -rf $(TEST_COVERAGE_DIR)
 	$(MAKE) clean -C $(SRC_LIBDCLL)
 
 fclean: clean
