@@ -9,9 +9,17 @@
 
 dcll_node_t *dcll_get_node_by_index(const dcll_list_t *list, ssize_t index)
 {
-    dcll_node_t *tmp = list->head;
+    dcll_node_t *tmp = NULL;
 
+    if (!list)
+        return (NULL);
+    tmp = list->head;
     index = __dcll_get_abs_index(list->length, index);
-    for (; index-- > 0; tmp = tmp->next);
+    if (index <= list->length / 2) {
+        for (; index-- > 0; tmp = tmp->next);
+    } else {
+        index = list->length - index;
+        for (; index-- > 0; tmp = tmp->prev);
+    }
     return (tmp);
 }
