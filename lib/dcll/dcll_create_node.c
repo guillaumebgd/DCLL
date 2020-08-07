@@ -2,17 +2,18 @@
 ** Duo Project C Library
 ** DCLL_C_Library
 ** File description:
-** Allocates a new DCLL node.
+** Allocates memory for a new DCLL node.
 */
 
 #include "dcll.h"
 
-dcll_node_t *dcll_create_node()
+dcll_node_t *dcll_create_node(void)
 {
-    dcll_node_t *new_node = malloc(sizeof(dcll_node_t));
+    dcll_node_t *node = malloc(sizeof(dcll_node_t));
 
-    if (!new_node) {
+    if (!node) {
         return (NULL);
     }
-    return (new_node);
+    (*node) = (dcll_node_t){.data = NULL, .data_freer = NULL, .next = node, .prev = node};
+    return (node);
 }

@@ -7,16 +7,6 @@
 
 #include "dcll.h"
 
-static void __dcll_destroy_node(dcll_node_t *node)
-{
-    if (!node)
-        return;
-    if (node->data && node->data_freer) {
-        node->data_freer(node->data);
-    }
-    free(node);
-}
-
 void dcll_destroy_list(dcll_list_t *list)
 {
     dcll_node_t *tmp = NULL;
@@ -30,7 +20,7 @@ void dcll_destroy_list(dcll_list_t *list)
     stopper = list->head;
     do {
         list->head = list->head->next;
-        __dcll_destroy_node(tmp);
+        dcll_destroy_node(tmp);
         tmp = list->head;
     } while (tmp != stopper);
     end:

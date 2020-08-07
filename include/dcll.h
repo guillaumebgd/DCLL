@@ -53,35 +53,58 @@ static inline void *__dcll_data_dup(void *data, const size_t size)
 
 //////////////////////////////
 
-//////////////////////////////
+///////////////////////
+// Library Functions //
+///////////////////////
 
 //Allocates memory for a new DCLL.
-//The list inside of the structure will be set to NULL.
+//The list content will be set to NULL.
 //
 //Returns an allocated pointer to a DCLL on success.
 //Returns NULL on error.
-dcll_list_t *dcll_create(void);
+dcll_list_t *dcll_create_list(void);
 //////////////////////////////
 
-//Library-reserved generic function to add node.
+//Allocates memory for a new DCLL node.
+//The node data content will be set to NULL.
+//Its next and prev pointers point to the node.
 //
-//- Not designed to be used.
-bool __dcll_add_node(dcll_list_t *list, void *data, void *(*data_freer)(void *));
+//Returns an allocated pointer to a DCLL node on success.
+//Returns NULL on error.
+dcll_node_t *dcll_create_node(void);
+//////////////////////////////
 
-//Allocates memory for a new DCLL node and adds it to the list.
+//Gets a pointer to a node in a list at the given 'index'.
+//
+//Returns a (dcll_note_t *) on success.
+//Returns (NULL) if not found.
+dcll_node_t *dcll_get_node_by_index(const dcll_list_t *list, ssize_t index);
+//////////////////////////////
+
+//Sets a node 'data' and 'data_freer' function pointer.
+//Duplicates given 'data'. Therefore, needs the memory size taken by 'data' as 'data_size'.
 //
 //Returns (true) on success.
-//Returns (false) on error (memory allocation failed).
-static inline bool dcll_add_node(dcll_list_t *list, void *data, const size_t data_size, void *(*data_freer)(void *))
-{
-    return (__dcll_add_node(list, __dcll_data_dup(data, data_size), data_freer));
-}
-
-dcll_node_t *dcll_get_node_by_index(const dcll_list_t *list, ssize_t index);
-
+//Returns (false) on error.
+bool dcll_set_node(dcll_node_t *node, void *data, const size_t data_size, void *(*data_freer)(void *));
 //////////////////////////////
 
+//Puts a node into a list at the desired index.
+//
+//Returns (true) on success.
+//Returns (false) on error.
+bool dcll_put_node_in_list(dcll_list_t *list, dcll_node_t *node, const ssize_t index);
+//////////////////////////////
+
+//If the list isn't set to NULL, frees the list and its nodes
+//using the data_freer function pointers if the data and data_freer fonction pointers aren't set to NULL.
 void dcll_destroy_list(dcll_list_t *list);
+//////////////////////////////
+
+//If the node isn't set to NULL, frees the node and its content
+//using the data_freer function pointers if the data and data_freer fonction pointer aren't set to NULL.
+void dcll_destroy_node(dcll_node_t *node);
+//////////////////////////////
 
 /////////////////////////////////////////
 

@@ -7,7 +7,7 @@
 
 #include "dcll.h"
 
-dcll_list_t *dcll_create(void)
+dcll_list_t *dcll_create_list(void)
 {
     dcll_list_t *list = malloc(sizeof(dcll_list_t));
 

@@ -9,13 +9,13 @@
 
 int main(void)
 {
-    dcll_list_t *list = dcll_create();
+    dcll_list_t *list = dcll_create_list();
     dcll_node_t *result = NULL;
 
-    dcll_add_node(list, NULL, 0, NULL);
-    dcll_add_node(list, NULL, 0, NULL);
-    dcll_add_node(list, NULL, 0, NULL);
-    result = dcll_get_node_by_index(list, 2);
+    dcll_put_node_in_list(list, dcll_create_node(), -1);
+    dcll_put_node_in_list(list, dcll_create_node(), -1);
+    dcll_put_node_in_list(list, dcll_create_node(), -1);
+    result = dcll_get_node_by_index(list, -1);
     dcll_destroy_list(list);
     return (0);
 }

@@ -5,11 +5,14 @@
 ## Makefile use for DCLL_C_library compilation
 ##
 
-SRC	=	__dcll_add_node.c	\
-		__dcll_get_abs_index.c	\
+SRC	=	__dcll_get_abs_index.c	\
 		__dcll_get_node_by_index.c	\
-		dcll_create.c	\
+		dcll_create_list.c	\
+		dcll_create_node.c	\
 		dcll_destroy_list.c	\
+		dcll_destroy_node.c	\
+		dcll_put_node_in_list.c	\
+		dcll_set_node.c	\
 
 override CFLAGS	=	-Wall -Wextra	\
 
