@@ -7,7 +7,7 @@ If you're unfamiliar with this concept, we advise you to search about it for the
 
 ## Usage of the Library
 
-Everything is described in details [here](https://github.com/guillaumebgd/DCLL_C_Library/wiki/DCLL-Wiki:-Home)!
+Everything is described in details [here](https://github.com/guillaumebgd/DCLL_C_Library/wiki/DCLL-Wiki:-Home)!<br>
 Examples to understand even more the logic behind the library are available there!
 
 ## Table of Contents
