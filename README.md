@@ -7,12 +7,12 @@ If you're unfamiliar with this concept, we advise you to search about it for the
 
 ## Usage of the Library
 
-Everything is described in details [here](https://github.com/guillaumebgd/DCLL_C_Library/wiki/DCLL-Wiki:-Presets)!
+Everything is described in details [here](https://github.com/guillaumebgd/DCLL_C_Library/wiki/DCLL-Wiki:-Home)!
 Examples to understand even more the logic behind the library are available there!
 
 ## Table of Contents
 
-As in release v1.0.0, here is the material you can work with this library (for further explanation on them, click [here](https://github.com/guillaumebgd/DCLL_C_Library/wiki/DCLL-Wiki:-Presets))
+As in release v1.0.0, here is the material you can work with this library (for further explanation on them, click [here](https://github.com/guillaumebgd/DCLL_C_Library/wiki/DCLL-Wiki:-Home))
 
 ***
 
