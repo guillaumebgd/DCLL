@@ -1,0 +1,110 @@
+#!/usr/bin/env python3
+
+import sys, os, subprocess, shutil
+
+usage = '''Usage:\n
+%s [Target Directory / -h / --help]
+
+\t- Imports the DCLL C Library to a directory.
+\t- No 'Target Directory' argument will import the Library into the current working directory.
+\t- If either '-h' or '--help' is given, it will print this usage.'''
+
+help_flags = ['-h', '--help']
+
+ac = len(sys.argv)
+
+#Checks the number of given arguments and treats help flags.
+if (ac == 1):
+    target = os.getcwd()
+elif (ac == 2 and sys.argv[1] in help_flags):
+    print(usage % sys.argv[0])
+    sys.exit(0)
+elif (ac != 2):
+    print(usage % sys.argv[0])
+    sys.exit(1)
+else:
+    target = sys.argv[1]
+
+#Checks if the target directory exists.
+if (os.path.exists(target) == False):
+    print(target + " doesn't exists.")
+    sys.exit(1)
+
+#Checks if the target directory file is a directory.
+if (os.path.isdir(target) == False):
+    print(target + " isn't a directory.")
+    sys.exit(1)
+
+#Adds a '/' to the end of the target string if there wasn't any.
+if (target[-1] != '/'):
+    target += '/'
+
+#String for a temporary buffer directory to get all of the files for the DCLL git repository.
+DCLL_tmp_dir = os.getcwd() + '/.dcll_import_tmp'
+
+#Removes the temporary buffer directory if it existed before this iteration.
+shutil.rmtree(DCLL_tmp_dir, ignore_errors=True)
+
+#Tries to create the temporary buffer directory.
+try:
+    os.mkdir(DCLL_tmp_dir)
+except OSError:
+    print('Creation of the tampon directory failed.')
+    shutil.rmtree(DCLL_tmp_dir, ignore_errors=True)
+    sys.exit(1)
+
+#Changes the current working directory to clone in the tempory buffer directory and not the directory the script is in.
+os.chdir(DCLL_tmp_dir)
+
+#Clones the DCLL git repository.
+subprocess.call(['git', 'clone', 'https://github.com/guillaumebgd/DCLL_C_Library.git'], stdout=open(os.devnull, 'wb'))
+
+#Tries to copy the dcll header file.
+if (os.path.exists(target + 'include') == True):
+    if (os.path.isdir(target + 'include') == False):
+        print("An 'include' file exists in " + target + " and is not a directory itself")
+        shutil.rmtree(DCLL_tmp_dir, ignore_errors=True)
+        sys.exit(1)
+    #Copies the dcll header file into the target's include directory.
+    subprocess.call(['cp', 'DCLL_C_Library/include/dcll.h', target + 'include'], stdout=open(os.devnull, 'wb'))
+else:
+    try:
+        os.mkdir(target + 'include')
+    except OSError:
+        print("Creation of the 'include' directory into " + target + " failed.")
+        shutil.rmtree(DCLL_tmp_dir, ignore_errors=True)
+        sys.exit(1)
+    #Copies the dcll header file into the target's include directory.
+    subprocess.call(['cp', 'DCLL_C_Library/include/dcll.h', target + 'include'], stdout=open(os.devnull, 'wb'))
+
+#Tries to copy the dcll library.
+if (os.path.exists(target + 'lib') == True):
+    if (os.path.isdir(target + 'lib') == False):
+        print("A 'lib' file exists in " + target + " and is not a directory itself")
+        shutil.rmtree(DCLL_tmp_dir, ignore_errors=True)
+        sys.exit(1)
+    if (os.path.exists(target + 'lib/dcll') == True):
+        if (os.path.isdir(target + 'lib/dcll') == False):
+            print("A 'lib/dcll' file exists in " + target + " and is not a directory itself")
+            shutil.rmtree(DCLL_tmp_dir, ignore_errors=True)
+            sys.exit(1)
+    #Copies the dcll library into the target's lib directory.
+    subprocess.call(['cp', '-r', 'DCLL_C_Library/lib/dcll/', target + 'lib'], stdout=open(os.devnull, 'wb'))
+else:
+    try:
+        os.mkdir(target + 'lib')
+    except OSError:
+        print("Creation of the 'lib' directory into " + target + " failed.")
+        shutil.rmtree(DCLL_tmp_dir, ignore_errors=True)
+        sys.exit(1)
+    try:
+        os.mkdir(target + 'lib/dcll')
+    except OSError:
+        print("Creation of the 'lib/dcll' directory into " + target + " failed.")
+        shutil.rmtree(DCLL_tmp_dir, ignore_errors=True)
+        sys.exit(1)
+    #Copies the dcll library into the target's lib directory.
+    subprocess.call(['cp', '-r', 'DCLL_C_Library/lib/dcll/', target + 'lib'], stdout=open(os.devnull, 'wb'))
+
+shutil.rmtree(DCLL_tmp_dir, ignore_errors=True)
+sys.exit(0)
