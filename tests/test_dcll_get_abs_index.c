@@ -1,6 +1,6 @@
 /*
 ** Duo Project C Library
-** DCLL_C_Library
+** DCLL
 ** File description:
 ** Tests the __dcll_get_abs_index() function.
 */

@@ -1,6 +1,6 @@
 /*
 ** Duo Project C Library
-** DCLL_C_Library
+** DCLL
 ** File description:
 ** Allocates memory for a new DCLL node.
 */

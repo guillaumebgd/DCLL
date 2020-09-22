@@ -1,6 +1,6 @@
 /*
 ** Duo Project C Library
-** DCLL_C_Library
+** DCLL
 ** File description:
 ** Sets node data to a given node.
 */

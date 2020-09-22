@@ -1,6 +1,6 @@
 /*
 ** Duo Project C Library
-** DCLL_C_Library
+** DCLL
 ** File description:
 ** Gets the absolute value of an index in a DCLL.
 */

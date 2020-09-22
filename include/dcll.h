@@ -1,6 +1,6 @@
 /*
 ** Duo Project C Library
-** DCLL_C_Library
+** DCLL
 ** File description:
 ** Header of the DCLL Library
 */
