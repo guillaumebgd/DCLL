@@ -79,9 +79,21 @@ static inline bool dcll_add_node(dcll_list_t *list, void *data, const size_t dat
 
 dcll_node_t *dcll_get_node_by_index(const dcll_list_t *list, ssize_t index);
 
+
 //////////////////////////////
 
 void dcll_destroy_list(dcll_list_t *list);
+
+//Allocates, fills and appends one node for each element of the given array into the end of the given list
+//  lenght is the number of element of the given array
+//  size is memory size of each element of the given array
+// Each created nodes allocate a new memory block to store one array element
+// the free() function is set by default to each node as the data_freer
+//
+//
+//Returns (list) on success.
+//Returns (NULL) on error (NULL pointers passed).
+dcll_list_t *dcll_inject_array(dcll_list_t *list, const void *array, const size_t lenght, const size_t size);
 
 /////////////////////////////////////////
 

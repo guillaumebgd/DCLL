@@ -9,6 +9,7 @@ SRC	=	__dcll_add_node.c	\
 		__dcll_get_abs_index.c	\
 		__dcll_get_node_by_index.c	\
 		dcll_create.c	\
+		dcll_inject_array.c	\
 		dcll_destroy_list.c	\
 
 override CFLAGS	=	-Wall -Wextra	\
