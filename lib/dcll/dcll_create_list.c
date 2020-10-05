@@ -1,13 +1,13 @@
 /*
 ** Duo Project C Library
-** DCLL_C_Library
+** DCLL
 ** File description:
 ** Allocates memory for a new DCLL.
 */
 
 #include "dcll.h"
 
-dcll_list_t *dcll_create(void)
+dcll_list_t *dcll_create_list(void)
 {
     dcll_list_t *list = malloc(sizeof(dcll_list_t));
 

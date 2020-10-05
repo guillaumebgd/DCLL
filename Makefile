@@ -1,8 +1,8 @@
 ##
 ## Duo Project C Library
-## DCLL_C_Library
+## DCLL
 ## File description:
-## Makefile use for DCLL_C_library compilation
+## Makefile use for DCLL compilation
 ##
 
 SRC_LIBDCLL	=	lib/dcll	\
