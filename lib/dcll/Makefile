@@ -7,6 +7,8 @@
 
 SRC	=	__dcll_get_abs_index.c	\
 		__dcll_get_node_by_index.c	\
+		dcll_create.c	\
+		dcll_inject_array.c	\
 		dcll_create_list.c	\
 		dcll_create_node.c	\
 		dcll_destroy_list.c	\

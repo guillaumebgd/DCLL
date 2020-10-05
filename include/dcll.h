@@ -106,6 +106,16 @@ void dcll_destroy_list(dcll_list_t *list);
 void dcll_destroy_node(dcll_node_t *node);
 //////////////////////////////
 
+//Allocates, sets and appends a node for each element of a given array to a given list.
+//'length' is the number of element of the given array
+//'size' is memory size of each element of the given array
+//Each created node is allocated a new memory block to store one array element.
+//The free() function is set by default to each node as the data_freer.
+//
+//Returns (list) on success.
+//Returns (NULL) on error (NULL pointers passed).
+dcll_list_t *dcll_inject_array(dcll_list_t *list, const void *array, const size_t length, const size_t size);
+
 /////////////////////////////////////////
 
 #endif /* DCLL_H_ */
